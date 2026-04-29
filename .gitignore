@@ -1,0 +1,80 @@
+# =============================================================================
+# Gluon WP Migration — plugin repository
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Plugin runtime / generated content
+# -----------------------------------------------------------------------------
+# Per todo/gluon-wp-migration/TODO-00, the temp/status folder is `runtime/`.
+# Track the deny-stub files (.htaccess, web.config, index.php) but ignore
+# every other file the plugin writes there at runtime.
+runtime/*
+!runtime/.htaccess
+!runtime/web.config
+!runtime/index.php
+
+# Legacy `storage/` folder name from upstream (in case anything still writes there)
+storage/*
+!storage/.htaccess
+!storage/web.config
+!storage/index.php
+
+# -----------------------------------------------------------------------------
+# Build / dependency artifacts
+# -----------------------------------------------------------------------------
+node_modules/
+.cache/
+dist/
+build/
+coverage/
+.phpunit.result.cache
+.phpcs-cache
+
+# Composer dev deps — vendored deps under lib/vendor/ are tracked intentionally
+# (servmask + bandar libraries from upstream); a top-level /vendor/ from
+# composer install is not.
+/vendor/
+
+# -----------------------------------------------------------------------------
+# Release artifacts
+# -----------------------------------------------------------------------------
+*.zip
+*.gwpack
+*.wpress
+
+# -----------------------------------------------------------------------------
+# Translations — compiled .mo files; .pot/.po stay tracked
+# -----------------------------------------------------------------------------
+languages/*.mo
+
+# -----------------------------------------------------------------------------
+# Logs / debug
+# -----------------------------------------------------------------------------
+*.log
+debug.log
+
+# -----------------------------------------------------------------------------
+# Editor / OS junk
+# -----------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+*~
+*.swp
+*.swo
+*.bak
+.idea/
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+*.sublime-project
+*.sublime-workspace
+
+# -----------------------------------------------------------------------------
+# Secrets — defense in depth
+# -----------------------------------------------------------------------------
+.env
+.env.*
+*.pem
+*.key
+auth.json
