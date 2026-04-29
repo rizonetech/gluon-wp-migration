@@ -24,9 +24,10 @@ coverage/
 .phpunit.result.cache
 .phpcs-cache
 
-# Composer-managed deps. Per TODO-A §2.2 the vendor/ tree is committed so
-# release ZIPs are self-contained; uncomment the line below only if a
-# build step rewrites vendor/ from composer.lock at release time.
+# Composer-managed deps. The vendor/ tree is committed so release ZIPs
+# are self-contained (WordPress sites can't run `composer install`).
+# Uncomment the line below only if a build step rewrites vendor/ from
+# composer.lock at release time.
 # /vendor/
 
 # -----------------------------------------------------------------------------
