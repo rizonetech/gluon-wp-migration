@@ -22,7 +22,9 @@ See [`docs/`](docs/) for the format spec, error code reference, and architecture
 
 ## Updates
 
-This plugin uses **GitHub-based updates** via [`YahnisElsts/plugin-update-checker`](https://github.com/YahnisElsts/plugin-update-checker), not the wp.org plugin directory. Each tagged release is published as a versioned ZIP asset on this repository; `plugin-update-checker` reads the latest non-prerelease tag and offers updates through the standard WordPress admin Updates screen.
+This plugin uses **GitHub-based updates** via [`rizonetech/gluon-update-checker`](https://github.com/rizonetech/gluon-update-checker) — Gluon's own focused, modern self-update library, written as an independent alternative to [`YahnisElsts/plugin-update-checker`](https://github.com/YahnisElsts/plugin-update-checker). It enforces strict SemVer 2.0, supports a 5-channel release system (`stable` / `rc` / `beta` / `alpha` / `nightly`), takes an atomic backup before every install and rolls back on failure, and sends zero telemetry — every byte that leaves your site is a documented public GitHub API request.
+
+Each tagged release on this repository is published as a versioned ZIP asset; the update checker reads the channel you've subscribed to and offers updates through the standard WordPress admin **Updates** screen, the same way wp.org-hosted plugins do. The plugin sets the WordPress `Update URI` header so the wp.org plugin directory can never accidentally serve a different plugin with the same slug.
 
 ## License
 
