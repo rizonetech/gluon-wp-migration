@@ -1,24 +1,29 @@
 # Gluon WP Migration
 
-WordPress site migration plugin — a fork of [All-in-One WP Migration](https://wordpress.org/plugins/all-in-one-wp-migration/) with the [Unlimited Extension](https://servmask.com/products/unlimited-extension) merged in. Same export/import pipeline, no upload size cap, no paid-tier UI, GPL-2.0-or-later end to end.
+A WordPress site migration plugin: export your site (database, files, themes, plugins, uploads) to a single archive, restore it onto another WordPress install. No upload-size cap, no premium tier, no upsell UI.
 
-> **Status:** scaffold only. Plugin code is still being ported. Not ready for use. See the migration plan in the parent workspace at [`todo/gluon-wp-migration/`](../../todo/gluon-wp-migration/) (private).
+> **Status:** scaffold only. Implementation has not started yet. Not ready for use. The plan lives in the parent (private) workspace at `todo/gluon-wp-migration/`.
 
-## Heritage and licensing
+## Highlights (planned for v1.0.0)
 
-This plugin is a derivative work of two GPLv2-licensed plugins by ServMask Inc.:
+- **Single plugin, no paid extension.** Full functionality in the free download.
+- **Per-file integrity verification.** Every entry in an archive carries a SHA-256 hash; restores verify before extracting and abort cleanly on mismatch.
+- **Optional AES-256-GCM encryption.** Passphrase-derived key via libsodium. Lose the passphrase, lose the backup — by design.
+- **Resumable exports and imports.** Survives PHP timeouts, low memory limits, and closed browser tabs. Picks up from the last checkpoint.
+- **First-class WP-CLI.** Every operation scriptable from the command line. JSON output supported.
+- **Selective backup and restore.** Pick categories (database, uploads, themes, plugins) on either side; pull a single file out of an old archive without restoring the whole thing.
+- **Built-in scheduler.** Cron-driven backups with configurable retention. No paid add-on.
+- **REST API.** `/wp-json/gwpmig/v1/...` for headless dashboards and CI/CD integration. Application-password auth supported.
+- **Modern admin UI.** Built with `@wordpress/components`. Mobile-responsive. WCAG 2.1 AA.
+- **Helpful errors.** Stable error codes (`GWPMIG_E_*`), actionable messages, one-click diagnostic dump.
+- **One-way `.wpress` import.** Existing All-in-One WP Migration users can restore their old archives into Gluon. Future backups are saved as `.gwpack` (Gluon's own format).
 
-- **All-in-One WP Migration** — base plugin
-- **All-in-One WP Migration Unlimited Extension** — removes the upload cap, adds retention features
-
-Both upstreams are GPL-2.0-or-later. This fork preserves that license. Modifications include rebrand of the application layer (class/function/constant prefixes, text domain, hook names, asset handles, menu slugs, CSS classes, JS namespace, cookie/nonce names, WP-CLI command, backups folder, archive extension), removal of paid-tier upsell UI, an admin UI redesign, and the merge of the two plugins into one. Vendored third-party libraries under `lib/vendor/` (servmask + bandar) retain their original copyright headers unchanged.
-
-A full attribution and modification record will live in [`NOTICE.md`](NOTICE.md) once the plugin scaffold is populated.
+See [`docs/`](docs/) for the format spec, error code reference, and architecture documents (added as design firms up).
 
 ## Updates
 
-This plugin uses **GitHub-based updates** via [`YahnisElsts/plugin-update-checker`](https://github.com/YahnisElsts/plugin-update-checker), not the wp.org plugin directory. Releases are published as versioned ZIP assets on this repository.
+This plugin uses **GitHub-based updates** via [`YahnisElsts/plugin-update-checker`](https://github.com/YahnisElsts/plugin-update-checker), not the wp.org plugin directory. Each tagged release is published as a versioned ZIP asset on this repository; `plugin-update-checker` reads the latest non-prerelease tag and offers updates through the standard WordPress admin Updates screen.
 
 ## License
 
-[GPL-2.0-or-later](LICENSE) — matches WordPress and the upstream plugins.
+[GPL-2.0-or-later](LICENSE) — matches WordPress.

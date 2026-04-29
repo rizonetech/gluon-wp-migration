@@ -5,19 +5,13 @@
 # -----------------------------------------------------------------------------
 # Plugin runtime / generated content
 # -----------------------------------------------------------------------------
-# Per todo/gluon-wp-migration/TODO-00, the temp/status folder is `runtime/`.
-# Track the deny-stub files (.htaccess, web.config, index.php) but ignore
-# every other file the plugin writes there at runtime.
+# The plugin's temp/status folder is `runtime/`. Track the deny-stub files
+# (.htaccess, web.config, index.php) so the directory deploys correctly;
+# ignore every other file the plugin writes there at runtime.
 runtime/*
 !runtime/.htaccess
 !runtime/web.config
 !runtime/index.php
-
-# Legacy `storage/` folder name from upstream (in case anything still writes there)
-storage/*
-!storage/.htaccess
-!storage/web.config
-!storage/index.php
 
 # -----------------------------------------------------------------------------
 # Build / dependency artifacts
@@ -30,17 +24,16 @@ coverage/
 .phpunit.result.cache
 .phpcs-cache
 
-# Composer dev deps — vendored deps under lib/vendor/ are tracked intentionally
-# (servmask + bandar libraries from upstream); a top-level /vendor/ from
-# composer install is not.
-/vendor/
+# Composer-managed deps. Per TODO-A §2.2 the vendor/ tree is committed so
+# release ZIPs are self-contained; uncomment the line below only if a
+# build step rewrites vendor/ from composer.lock at release time.
+# /vendor/
 
 # -----------------------------------------------------------------------------
-# Release artifacts
+# Release artifacts (built ZIPs and Gluon archives the plugin produces in tests)
 # -----------------------------------------------------------------------------
 *.zip
 *.gwpack
-*.wpress
 
 # -----------------------------------------------------------------------------
 # Translations — compiled .mo files; .pot/.po stay tracked

@@ -1,28 +1,13 @@
-# Notice — attribution and modifications
+# Notice
 
-> **Status:** stub. The full content lands when [`todo/gluon-wp-migration/TODO-01-scaffold-and-copy.md`](../../todo/gluon-wp-migration/TODO-01-scaffold-and-copy.md) Section 1.4 is executed (private workspace).
+## Acknowledgement of prior art
 
-## Upstream works
+[All-in-One WP Migration](https://wordpress.org/plugins/all-in-one-wp-migration/) by ServMask Inc. is the dominant prior art in WordPress site migration and the reason this category of plugin exists at scale. Gluon WP Migration is an **independent implementation** that draws inspiration from AIOWPM's behavior and feature set but **shares no source code, format internals, identifiers, or assets** with it. Where AIOWPM and Gluon end up doing similar things (both are WordPress migration plugins, after all), the resemblance is functional, not derivative.
 
-This plugin is a derivative work of two GPL-2.0-or-later plugins published by **ServMask Inc.**:
+For users coming from AIOWPM: Gluon includes a one-way reader for `.wpress` archives so existing backups can be imported. Gluon writes its own `.gwpack` format for new backups.
 
-- **All-in-One WP Migration** — `https://wordpress.org/plugins/all-in-one-wp-migration/`
-- **All-in-One WP Migration Unlimited Extension** — `https://servmask.com/products/unlimited-extension`
+## Third-party libraries
 
-Copyright in those upstream works belongs to ServMask Inc. and the original contributors. Their license (GPL-2.0-or-later) is preserved in this fork via [`LICENSE`](LICENSE).
+Bundled third-party libraries (under `vendor/`, vendored via Composer) retain their original copyright and license notices in their respective directories. License inventory is published in [`docs/licenses.md`](docs/licenses.md) (added during build).
 
-## Modifications (high level)
-
-Gluon WP Migration is a substantially modified derivative work. Modifications include:
-
-- **Rebrand of the application layer** — class/function/constant prefixes, text domain, hook/filter names, asset handles, CSS classes, JS namespace, cookie/nonce names, admin menu slugs, WP-CLI command, backups folder name, and the outer archive file extension. Internal archive format remains compatible with the upstream `.wpress` format.
-- **Merge of the two upstream plugins** into a single plugin (no paid-tier separation, no separate "extension" plugin).
-- **Removal of paid-tier UI** — premium upsell calls-to-action, upgrade screens, and links to paid extensions.
-- **Admin UI redesign** so the plugin is visibly distinct from the upstream.
-- **GitHub-based update channel** via `plugin-update-checker` (not the wp.org plugin directory).
-
-A complete change record will be maintained alongside the rebrand work as it is implemented.
-
-## Vendored third-party libraries
-
-Code under `lib/vendor/` (notably the `servmask/` and `bandar/` libraries from the upstream plugins) is **structurally untouched**. Original copyright headers, file structure, and class names within `lib/vendor/` are preserved. Only the outer wrappers and require paths in the application layer are modified.
+The plugin itself is licensed under [GPL-2.0-or-later](LICENSE).
